@@ -67,7 +67,7 @@ All data was sourced from the U.S. Bureau of Transportation Statistics:
 - **Dataset:** T-100 International Segment
 - **Period:** Calendar year 2025
 - **Coverage:** All international flight segments to/from U.S. airports
-- **Source:** [BTS TranStats Database](https://www.transtats.bts.gov/)
+- **Source:** [BTS TranStats Database]([https://www.transtats.bts.gov/](https://www.transtats.bts.gov/DL_SelectFields.aspx?gnoyr_VQ=FJE&QO_fu146_anzr=Nv4+Pn44vr45))
 
 - ## Insights surfaced
 
