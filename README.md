@@ -1,5 +1,7 @@
 # International Air Travel Statistics 2025 — Power BI Dashboard
 
+![Dashboard preview](pictures/dashboard_overview.png)
+
 An operational efficiency and strategic analysis dashboard built from the U.S. 
 Bureau of Transportation Statistics (BTS) T-100 International Segment data. 
 The dashboard goes beyond descriptive reporting to surface where airlines 
