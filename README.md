@@ -61,7 +61,7 @@ A long red bar reveals a high-volume problem route; a long green bar reveals a s
 
 ## Data model
 
-![Data model](pictures/data_model.png)
+![Data model](pictures/er_diagram.png)
 
 The dashboard uses a star schema with two fact tables connected to shared dimensions:
 
