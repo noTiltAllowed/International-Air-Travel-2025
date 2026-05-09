@@ -8,17 +8,22 @@ The dashboard goes beyond descriptive reporting to surface where airlines
 could improve revenue through better load factor management.
 
 
-**Operational efficiency**
+## What this dashboard answers
+
+### Operational efficiency
+
 - How efficiently are airlines filling their planes? (Load Factor: 81.3% vs 85% target)
 - How reliably are scheduled flights actually performed? (Flight Rate: 98.9%)
 - How does demand compare to capacity month over month?
 
-**Market structure**
+### Market structure
+
 - Which carriers dominate international air travel from US airports?
 - Which destination countries see the most traffic?
 - Which specific routes are the busiest?
 
-**Strategic opportunities**
+### Strategic opportunities
+
 - Which routes are running below load factor target?
 - Where would improving load factor have the biggest revenue impact?
 
@@ -27,13 +32,10 @@ could improve revenue through better load factor management.
 
 ### Two parallel fact tables, not one
 
-The data model uses two fact tables sharing common dimensions rather than 
-merging them:
+The data model uses two fact tables sharing common dimensions rather than merging them:
 
-- `I92` — all flight activity (scheduled + unscheduled), used for passenger 
-  and capacity analysis
-- `Flight_Disruptions` — scheduled flights only, used for fulfillment and 
-  cancellation analysis
+- `I92` — all flight activity (scheduled + unscheduled), used for passenger and capacity analysis
+- `Flight_Disruptions` — scheduled flights only, used for fulfillment and cancellation analysis
 
 This separation matters because a flight performed without being scheduled 
 would inflate fulfillment rate calculations if combined with scheduled-flight 
@@ -41,26 +43,21 @@ data. Keeping them separate preserves measurement integrity.
 
 ### Opportunity Score as the differentiator
 
-Rather than ranking routes by raw load factor (which would over-prioritize 
-small underperforming routes), the dashboard uses a custom Opportunity Score 
-that multiplies the load factor gap by passenger volume. This surfaces routes 
-where moderate improvements would have the biggest revenue impact.
+Rather than ranking routes by raw load factor (which would over-prioritize small underperforming routes), the dashboard uses a custom Opportunity Score that multiplies the load factor gap by passenger volume. This surfaces routes where moderate improvements would have the biggest revenue impact.
 
-For example, JFK → LHR runs at ~80% load factor (only 5 points below target), 
-but its 1.6M passenger volume means small improvements recover more revenue 
-than fixing a smaller route running at 50%. The Opportunity Score visual 
-captures this trade-off mathematically.
+For example, JFK → LHR runs at ~80% load factor (only 5 points below target), but its 1.6M passenger volume means small improvements recover more revenue than fixing a smaller route running at 50%. The Opportunity Score visual captures this trade-off mathematically.
+
 
 ### Dual-metric corridor visual
 
 The Top 10 Corridors chart encodes two metrics at once:
+
 - **Bar length** = passenger volume (size of the route)
 - **Bar color** = load factor (health of the route)
 
-A long red bar reveals a high-volume problem route; a long green bar reveals 
-a strategic strength. This is genuinely actionable information that single-metric 
-visuals can't communicate.
+A long red bar reveals a high-volume problem route; a long green bar reveals a strategic strength. This is genuinely actionable information that single-metric visuals can't communicate.
 
+---
 
 ## Data source
 
@@ -71,7 +68,9 @@ All data was sourced from the U.S. Bureau of Transportation Statistics:
 - **Coverage:** All international flight segments to/from U.S. airports
 - **Source:** [BTS TranStats Database](https://www.transtats.bts.gov/DL_SelectFields.aspx?gnoyr_VQ=FJE&QO_fu146_anzr=Nv4+Pn44vr45)
 
-- ## Insights surfaced
+---
+
+## Insights surfaced
 
 A few non-obvious findings from the dashboard:
 
@@ -94,3 +93,16 @@ A few non-obvious findings from the dashboard:
   collectively account for the majority of international passengers from US 
   airports. Foreign carriers operate smaller market shares.
 
+---
+
+## Conclusion
+
+This dashboard reframes international air travel data from a compliance-style report into a strategic decision tool. Rather than asking "what happened?", it surfaces actionable questions: which routes deserve operational focus, where capacity outpaces demand, and how moderate efficiency gains on high-volume routes could translate into significant revenue recovery.
+
+The 2025 data reveals a market dominated by US carriers operating to a small set of high-traffic destinations (Mexico, Canada, the UK), where overall fulfillment rates are strong (98.9%) but load factor consistently falls short of industry targets (81.3% vs 85%). The largest improvement opportunities are not the smallest underperforming routes, but the largest routes with moderate efficiency gaps — JFK → LHR being the clearest example.
+
+By separating scheduled and operated flights into parallel fact tables, building a custom Opportunity Score for revenue-impact prioritization, and pairing volume with load factor in the corridor visual, the dashboard demonstrates BI design choices that go beyond default visualizations to answer real business questions.
+
+---
+
+*Built with Power BI Desktop. Data sourced from the U.S. Bureau of Transportation Statistics.*
