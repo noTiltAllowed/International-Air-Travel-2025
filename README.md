@@ -59,6 +59,27 @@ A long red bar reveals a high-volume problem route; a long green bar reveals a s
 
 ---
 
+## Data model
+
+![Data model](pictures/data_model.png)
+
+The dashboard uses a star schema with two fact tables connected to shared dimensions:
+
+**Fact tables**
+
+- `I92` — flight segments (passengers, seats, departures, distance, aircraft type). Records all flight activity, scheduled or otherwise. Used for passenger volume, capacity, and load factor analysis.
+- `Flight_Disruptions` — a filtered subset of `I92` containing only scheduled flights (rows where DEPARTURES_SCHEDULED > 0). Used for fulfillment rate and missing flight calculations.
+
+**Dimension tables**
+
+- `Dates` — calendar dimension with a proper Date column, marked as a date table to enable time intelligence functions
+- `Origin` — origin airport details (code, city, country, world area code)
+- `Destination` — destination airport details (mirrors the Origin schema)
+- `Carrier` — airline reference data (carrier name, codes, operational details)
+- `Aircraft_Types` and `Aircrafts` — aircraft specifications (kept in the model but not used in the current dashboard)
+
+---
+
 ## Data source
 
 All data was sourced from the U.S. Bureau of Transportation Statistics:
